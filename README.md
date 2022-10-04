@@ -46,13 +46,13 @@ Ir a http://www.afip.gob.ar/ws/documentacion/certificados.asp para obtener mas i
 # Como usarlo
 
 Lo primero es incluir el SDK en tu aplicación
-````js
-const Afip = require('@afipsdk/afip.js');
+````ts
+import AfipExp from "@autogestiones/afip-exp.js"
 ````
 
 Luego creamos una instancia de la clase Afip pasandole un Objeto como parámetro.
-````js
-const afip = new Afip({ CUIT: 20111111112 });
+````ts
+const afipExp = new Afip({ CUIT: 20111111112 });
 ````
 
 Para más información acerca de los parámetros que se le puede pasar a la instancia new `Afip()` consulte sección [Primeros pasos](https://github.com/afipsdk/afip.js/wiki/Primeros-pasos#como-usarlo) de la documentación

@@ -1,7 +1,8 @@
+import ElectronicExportBilling from "./Class/ElectronicExportBilling";
 export default class Afip {
     options: {};
     ElectronicBilling: any;
-    ElectronicExportBilling: any;
+    ElectronicExportBilling: ElectronicExportBilling;
     TA_FOLDER: any;
     WSAA_WSDL: any;
     WSAA_URL: any;

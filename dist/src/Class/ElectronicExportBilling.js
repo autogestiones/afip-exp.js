@@ -22,17 +22,18 @@ class ElectronicExportBilling extends AfipWebService {
     }
     async createVoucher(data, returnResponse = false) {
         const Id = await this.getLastId();
+        const dto = data;
         const req = {
-            'Cmp': Object.assign({ 'Id': Id }, data)
+            'Cmp': Object.assign({ 'Id': Id }, dto)
         };
-        if (data['Permisos'])
-            data['Permisos'] = { 'Permiso': data['Permisos'] };
-        if (data['Cmps_asoc'])
-            data['Cmps_asoc'] = { 'Cmp_asoc': data['Cmps_asoc'] };
-        if (data['Items'])
-            data['Items'] = { 'Item': data['Items'] };
-        if (data['Opcionales'])
-            data['Opcionales'] = { 'Opcional': data['Opcionales'] };
+        if (dto['Permisos'])
+            dto['Permisos'] = { 'Permiso': dto['Permisos'] };
+        if (dto['Cmps_asoc'])
+            dto['Cmps_asoc'] = { 'Cmp_asoc': dto['Cmps_asoc'] };
+        if (dto['Items'])
+            dto['Items'] = { 'Item': dto['Items'] };
+        if (dto['Opcionales'])
+            dto['Opcionales'] = { 'Opcional': dto['Opcionales'] };
         const results = await this.executeRequest('FEXAuthorize', req);
         if (returnResponse === true) {
             return results;

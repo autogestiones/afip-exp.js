@@ -1,8 +1,9 @@
+import { ICreateVoucherExport } from './../types';
 declare const AfipWebService: any;
 export default class ElectronicExportBilling extends AfipWebService {
     constructor(afip: any);
     getLastVoucher(salesPoint: any, type: any): Promise<any>;
-    createVoucher(data: any, returnResponse?: boolean): Promise<any>;
+    createVoucher(data: ICreateVoucherExport, returnResponse?: boolean): Promise<any>;
     createNextVoucher(data: any): Promise<any>;
     getVoucherInfo(number: any, salesPoint: any, type: any): Promise<any>;
     getLastId(): Promise<any>;

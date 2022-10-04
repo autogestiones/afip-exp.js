@@ -1,4 +1,5 @@
 // @ts-ignore: Unreachable code error
+import { ICreateVoucherExport } from './../types';
 const AfipWebService = require('./AfipWebService');
 
 /**
@@ -59,27 +60,27 @@ const AfipWebService = require('./AfipWebService');
 	 * 	for CAE (yyyy-mm-dd)] else returns complete response from 
 	 * 	AFIP {@see WS Specification item 4.1.3}
 	 **/
-	async createVoucher(data, returnResponse = false) {
+	async createVoucher(data: ICreateVoucherExport, returnResponse = false) {
 		const Id = await this.getLastId()
+		const dto  = data as any
 		const req = {
 			'Cmp' : {
 				'Id': Id,
-				...data,
+				...dto,
 			}
 		};
- 
 
-		if (data['Permisos']) 
-			data['Permisos'] = { 'Permiso' : data['Permisos'] };
+		if (dto['Permisos']) 
+			dto['Permisos'] = { 'Permiso' : dto['Permisos'] };
 
-		if (data['Cmps_asoc']) 
-			data['Cmps_asoc'] = { 'Cmp_asoc' : data['Cmps_asoc'] };
+		if (dto['Cmps_asoc']) 
+			dto['Cmps_asoc'] = { 'Cmp_asoc' : dto['Cmps_asoc'] };
 		
-		if (data['Items']) 
-			data['Items'] = { 'Item' : data['Items'] };
+		if (dto['Items']) 
+			dto['Items'] = { 'Item' : dto['Items'] };
 		
-		if (data['Opcionales']) 
-			data['Opcionales'] = { 'Opcional' : data['Opcionales'] };
+		if (dto['Opcionales']) 
+			dto['Opcionales'] = { 'Opcional' : dto['Opcionales'] };
 
 		const results = await this.executeRequest('FEXAuthorize', req);
 
@@ -180,7 +181,7 @@ const AfipWebService = require('./AfipWebService');
 	 * @return array all exports type
 	 **/
 	 async getExportTypes() {
-		return (await this.executeRequest('ClsFEXResponse_Tex')).FEXResultGet.ClsFEXResponse_Mon;
+		return (await this.executeRequest('FEXGetPARAM_Tipo_Expo')).FEXResultGet.ClsFEXResponse_Mon;
 	}
 	
 	/**

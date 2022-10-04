@@ -381,6 +381,7 @@ module.exports = class ElectronicExportBilling extends AfipWebService {
 
 		if (res.FEXErr) {
 			const err = Array.isArray(res.FEXErr) ? res.FEXErr[0] : res.FEXErr;
+			if(+err.ErrCode !== 0)
 			throw new Error(`(${err.ErrCode}) ${err.ErrMsg}`, err.ErrCode);
 		}
 	}

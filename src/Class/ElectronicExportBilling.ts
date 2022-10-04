@@ -181,7 +181,7 @@ const AfipWebService = require('./AfipWebService');
 	 * @return array all exports type
 	 **/
 	 async getExportTypes() {
-		return (await this.executeRequest('FEXGetPARAM_Tipo_Expo')).FEXResultGet.ClsFEXResponse_Mon;
+		return (await this.executeRequest('FEXGetPARAM_Tipo_Expo')).FEXResultGet.ClsFEXResponse_Tex;
 	}
 	
 	/**

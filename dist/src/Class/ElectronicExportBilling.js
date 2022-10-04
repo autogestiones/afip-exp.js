@@ -81,7 +81,7 @@ class ElectronicExportBilling extends AfipWebService {
         return (await this.executeRequest('FEXGetPARAM_MON')).FEXResultGet.ClsFEXResponse_Mon;
     }
     async getExportTypes() {
-        return (await this.executeRequest('ClsFEXResponse_Tex')).FEXResultGet.ClsFEXResponse_Mon;
+        return (await this.executeRequest('FEXGetPARAM_Tipo_Expo')).FEXResultGet.ClsFEXResponse_Tex;
     }
     async getUnits() {
         return (await this.executeRequest('FEXGetPARAM_UMed')).FEXResultGet.ClsFEXResponse_UMed;

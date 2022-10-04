@@ -16,7 +16,6 @@
 <!-- TABLE OF CONTENTS -->
 ## Tabla de contenidos
 
-* [Acerca del proyecto](#acerca-del-proyecto)
 * [Guia de inicio](#guia-de-inicio)
   * [Instalacion](#instalacion)
   * [Como usarlo](#como-usarlo)

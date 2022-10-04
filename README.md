@@ -1,9 +1,3 @@
-<!-- PROJECT SHIELDS -->
-[![NPM][npm-shield]](https://www.npmjs.com/package/@afipsdk/afip.js)
-[![Contributors][contributors-shield]](https://github.com/afipsdk/afip.js/graphs/contributors)
-[![Closed issues][issues-shield]](https://github.com/afipsdk/afip.js/issues)
-[![License][license-shield]](https://github.com/afipsdk/afip.js/blob/master/LICENSE)
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">

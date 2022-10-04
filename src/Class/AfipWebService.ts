@@ -1,10 +1,20 @@
+// @ts-ignore: Unreachable code error
 const soap = require('soap');
+// @ts-ignore: Unreachable code error
 const path = require('path');
 
 /**
  * Base class for AFIP web services 
  **/ 
 module.exports = class AfipWebService {
+	soapv12: any
+	WSDL: any
+	URL: any
+	WSDL_TEST: any
+	URL_TEST: any
+	afip: any
+	options: any
+	soapClient: any
 	constructor(webServiceOptions, options = {}){
 		if (!webServiceOptions) {
 			throw new Error('Missing Web Service Object');
@@ -97,10 +107,10 @@ module.exports = class AfipWebService {
 		}
 		else {
 			if (this.afip.options['production']) {
-				this.WSDL = path.resolve(__dirname, '../Afip_res', this.WSDL);
+				this.WSDL = path.resolve(__dirname, '../../src/Afip_res', this.WSDL);
 			}
 			else{
-				this.WSDL = path.resolve(__dirname, '../Afip_res', this.WSDL_TEST);
+				this.WSDL = path.resolve(__dirname, '../../src/Afip_res', this.WSDL_TEST);
 				this.URL = this.URL_TEST;
 			}
 		}

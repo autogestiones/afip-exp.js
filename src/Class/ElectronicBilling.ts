@@ -1,3 +1,4 @@
+// @ts-ignore: Unreachable code error
 const AfipWebService = require('./AfipWebService');
 
 /**
@@ -5,7 +6,7 @@ const AfipWebService = require('./AfipWebService');
  * 
  * @link http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf WS Specification
  **/
-module.exports = class ElectronicBilling extends AfipWebService {
+module.exports = class ElectronicBilling  extends AfipWebService {
 	constructor(afip){
 		const options = {
 			soapV12: true,
@@ -336,7 +337,7 @@ module.exports = class ElectronicBilling extends AfipWebService {
 
 		if (res.Errors) {
 			const err = Array.isArray(res.Errors.Err) ? res.Errors.Err[0] : res.Errors.Err;
-			throw new Error(`(${err.Code}) ${err.Msg}`, err.Code);
+			throw new Error(`(${err.Code}) ${err.Msg}` );
 		}
 	}
 

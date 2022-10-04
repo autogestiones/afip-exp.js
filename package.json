@@ -1,14 +1,14 @@
 {
-  "name": "@afipsdk/afip.js",
-  "version": "0.7.3",
-  "description": "Libreria para usar los Web Services de AFIP con JavaScript",
+  "name": "@autogestiones/afip-exp.js",
+  "version": "0.0.1",
+  "description": "Libreria para usar los Web Services Wsfexv1 de AFIP con JavaScript",
   "main": "src/Afip.js",
   "scripts": {
     "test": "echo \"No test specified\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AfipSDK/afip.js"
+    "url": "git+https://github.com/autogestiones/afip-exp.js"
   },
   "keywords": [
     "web-service",
@@ -16,12 +16,12 @@
     "padron",
     "afip"
   ],
-  "author": "AfipSDK <afipsdk@gmail.com>",
+  "author": "Autogestiones <soporte@arteycomunicacion.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AfipSDK/afip.js/issues"
+    "url": "https://github.com/autogestiones/afip-exp.js/issues"
   },
-  "homepage": "https://github.com/AfipSDK/afip.js#readme",
+  "homepage": "https://github.com/autogestiones/afip-exp.js#readme",
   "dependencies": {
     "node-forge": "^1.0.0",
     "soap": "^0.24.0",

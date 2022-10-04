@@ -28,14 +28,6 @@
 * [Contacto](#contacto)
 
 
-
-<!-- ABOUT THE PROJECT -->
-## Acerca del proyecto
-Afip SDK es la forma más rápida y simple de conectarse con los Web Services de AFIP.
-
-Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma parte de [Afip SDK](https://afipsdk.com/).
-
-
 <!-- START GUIDE -->
 ## Guia de inicio
 
@@ -70,8 +62,6 @@ Una vez realizado esto podemos comenzar a usar el SDK con los Web Services dispo
 
 <!-- WEB SERVICES -->
 ## Web Services
-
-Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa de afip.js](https://github.com/afipsdk/afip.js/wiki)
 
 ### Factura electronica
 Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/afipsdk/afip.js/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí

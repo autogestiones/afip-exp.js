@@ -40,9 +40,9 @@ import ElectronicExportBilling from "./Class/ElectronicExportBilling";
 export default class Afip {
   options = {};
 
-  ElectronicBilling;
+  ElectronicBilling: any;
 
-  ElectronicExportBilling;
+  ElectronicExportBilling: ElectronicExportBilling;
 
   TA_FOLDER;
 

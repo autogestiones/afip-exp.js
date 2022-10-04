@@ -7,19 +7,15 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/afipsdk/afip.js">
-    <img src="https://github.com/afipsdk/afipsdk.github.io/blob/master/images/logo-colored.png" alt="Afip.js" width="130" height="130">
-  </a>
+  <img src="https://static.autogestiones.com.ar/resource/logo.png" width="320" alt="Autogestiones Logo" /> 
+</p>
 
-  <h3 align="center">Afip.js</h3>
+  <h3 align="center">Afip-exp.js</h3>
 
   <p align="center">
-    Librería para conectarse a los Web Services de AFIP
+    Librería para conectarse al Web Service de Factura Electrónica de Exportación V1
     <br />
-    <a href="https://github.com/afipsdk/afip.js/wiki"><strong>Explorar documentación »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/afipsdk/afip.js/issues">Reportar un bug</a>
+    <a href="https://github.com/autogestiones/afip-exp.js/issues">Reportar un bug</a>
   </p>
 </p>
 
@@ -32,13 +28,8 @@
   * [Como usarlo](#como-usarlo)
 * [Web Services](#web-services)
   * [Factura electronica](#factura-electronica)
-  * [Padron alcance 4](#padron-alcance-4)
-  * [Padron alcance 5](#padron-alcance-5)
-  * [Padron alcance 10](#padron-alcance-10)
-  * [Padron alcance 13](#padron-alcance-13)
-  * [🎉 Otro web service](#otro-web-service)
-* [Proyectos relacionados](#proyectos-relacionados)
-* [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
+  * [Factura electronica de exportación](#factura-electronica-de-exportacion)
+* [¿Necesitas implementarlo? 🚀](#necesitas-ayuda-)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
 
@@ -58,13 +49,7 @@ Esta librería fue creada con la intención de ayudar a los programadores a usar
 #### Via npm
 
 ```
-npm install --save @afipsdk/afip.js
-```
-
-#### Via Yarn
-
-```
-yarn add @afipsdk/afip.js
+npm install --save @autogestiones/afip-exp.js
 ```
 
 **Siguiente paso** 
@@ -85,11 +70,9 @@ Luego creamos una instancia de la clase Afip pasandole un Objeto como parámetro
 const afip = new Afip({ CUIT: 20111111112 });
 ````
 
-
 Para más información acerca de los parámetros que se le puede pasar a la instancia new `Afip()` consulte sección [Primeros pasos](https://github.com/afipsdk/afip.js/wiki/Primeros-pasos#como-usarlo) de la documentación
 
 Una vez realizado esto podemos comenzar a usar el SDK con los Web Services disponibles
-
 
 <!-- WEB SERVICES -->
 ## Web Services
@@ -99,38 +82,15 @@ Si necesitas más información de cómo utilizar algún web service echa un vist
 ### Factura electronica
 Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/afipsdk/afip.js/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
 
-### Padron alcance 4
-El Servicio Web de Consulta de Padrón denominado A4 ha quedado limitado para Organismos Públicos, si lo necesitas puedes leer la documentación de [consulta al padrón de AFIP alcance 4](https://github.com/afipsdk/afip.js/wiki/Consulta-al-padron-de-AFIP-alcance-4)
-
-### Padron alcance 5
-Quienes usaban el padrón A4 pueden utilizar este padrón en modo de remplazo, si queres saber cómo echa un vistazo a la documentación de [consulta al padrón de AFIP alcance 5](https://github.com/afipsdk/afip.js/wiki/Consulta-al-padron-de-AFIP-alcance-5)
-
-### Padron alcance 10
-Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 10](https://github.com/afipsdk/afip.js/wiki/Consulta-al-padron-de-AFIP-alcance-10)
-
-### Padron alcance 13
-Si debes consultar por el CUIT de una persona física tendrás que utilizar este web service, su documentación se encuentra disponible en la wiki de [consulta al padrón de AFIP alcance 13](https://github.com/afipsdk/afip.js/wiki/Consulta-al-padron-de-AFIP-alcance-13)
-
-### Otro web service
-Si necesitas usar algún otro web service la versión PRO incluye un tutorial completo para integrar cualquier otro web service de AFIP
-
-
-**[Saber más](https://afipsdk.com/pro.html)**
-
-
-<!-- RELATED PROJECTS-->
-### Proyectos relacionados
-
-#### Libreria para PHP
-Si necesitas acceder los web services de AFIP en **PHP** podes utilizar [Afip.php](https://github.com/afipsdk/afip.php)
+### Factura electronica de exportación
+Podes encontrar la documentación necesaria para utilizar la [facturación electrónica exportación](https://www.afip.gob.ar/fe/documentos/WSFEX-Manualparaeldesarrollador_V1_9.pdf)
 
 <!-- AFIP SDK PRO -->
 ### ¿Necesitas ayuda? 🚀
 
-¿Quieres implementarlo de forma rápida y fiable? Obtén Afip SDK PRO que incluye una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más.
+¿Quieres implementarlo de forma rápida y fácil? Prueba Autogestiones
 
-
-**[Saber más](https://afipsdk.com/pro.html)**
+**[Saber más](https://www.autogestiones.net/)**
 
 
 <!-- LICENCE -->
@@ -140,16 +100,9 @@ Distribuido bajo la licencia MIT. Vea `LICENSE` para más información.
 
 <!-- CONTACT -->
 ### Contacto
-Afip SDK - afipsdk@gmail.com
+Autogestiones - contacto@autogestiones.net
 
-Link del proyecto: [https://github.com/afipsdk/afip.js](https://github.com/afipsdk/afip.js)
-
+Link del proyecto: [https://github.com/autogestiones/afip-exp.js](https://github.com/autogestiones/afip-exp.js)
 
 _Este software y sus desarrolladores no tienen ninguna relación con la AFIP._
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[npm-shield]: https://img.shields.io/npm/dw/@afipsdk/afip.js.svg
-[contributors-shield]: https://img.shields.io/github/contributors/afipsdk/afip.js.svg?color=orange
-[issues-shield]: https://img.shields.io/github/issues-closed-raw/afipsdk/afip.js.svg?color=blueviolet
-[license-shield]: https://img.shields.io/github/license/afipsdk/afip.js.svg?color=blue
+ 

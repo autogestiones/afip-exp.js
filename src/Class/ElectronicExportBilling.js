@@ -265,7 +265,7 @@ module.exports = class ElectronicExportBilling extends AfipWebService {
 	}
 
 	/**
-	 * Asks to AFIP Servers for CUIT countries availables {@see WS 
+	 * Asks to AFIP Servers for CUIT options availables {@see WS 
 	 * Specification item 2.15}
 	 *
 	 * @return array all options types  
@@ -277,14 +277,14 @@ module.exports = class ElectronicExportBilling extends AfipWebService {
 	/**
 	 * Get complete voucher information
 	 *
-	 * Asks to AFIP servers for complete information of voucher {@see WS 
-	 * Specification item 2.13 }
+	 * Verify to AFIP servers if permission exist {@see WS 
+	 * Specification item 2.16 }
 	 *
 	 * @param permissionId string 	moneyId to get information
 	 * @param countryid int countryid to get information
 	 *
 	 * @return array|null returns array with complete voucher information 
-	 * 	{@see WS Specification item 2.13 } or null if there not exists 
+	 * 	{@see WS Specification item 2.16 } or null if there not exists 
 	 **/
 	 async verifyPermissionExistenceCountryById(permissionId, countryId) {
 		const req = {

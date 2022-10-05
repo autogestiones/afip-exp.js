@@ -33,12 +33,18 @@ interface IOpcionales{
     <Pro_total_item>decimal</Pro_total_item>
     </Item>
  */
+
+export enum ECreateVoucherExportType{
+    EXPORTACION_DEFINITIVA_BIENES = 1,
+    SERVICIOS=2,
+    OTROS=3
+}
 export interface ICreateVoucherExport {
     Fecha_cbte?: string
     Cbte_Tipo: string
     Punto_vta: number
     Cbte_nro?: number
-    Tipo_expo: number
+    Tipo_expo: ECreateVoucherExportType
     Permiso_existente?: "S"| "N" 
     Permisos?: IPermission[]
     Dst_cmp: number

@@ -62,7 +62,7 @@ export interface ICreateVoucherExport {
     Incoterms?: string
     Incoterms_Ds?: string
     Idioma_cbte: string
-    Items: IItems
+    Items: IItems[]
     Opcionales?: IOpcionales
     Fecha_pago?: string
    };

@@ -24,7 +24,7 @@ interface IOpcionales {
 export declare enum ECreateVoucherExportType {
     EXPORTACION_DEFINITIVA_BIENES = 1,
     SERVICIOS = 2,
-    OTROS = 3
+    OTROS = 4
 }
 export interface ICreateVoucherExport {
     Fecha_cbte?: string;
@@ -49,7 +49,7 @@ export interface ICreateVoucherExport {
     Incoterms?: string;
     Incoterms_Ds?: string;
     Idioma_cbte: string;
-    Items: IItems;
+    Items: IItems[];
     Opcionales?: IOpcionales;
     Fecha_pago?: string;
 }

@@ -37,7 +37,7 @@ interface IOpcionales{
 export enum ECreateVoucherExportType{
     EXPORTACION_DEFINITIVA_BIENES = 1,
     SERVICIOS=2,
-    OTROS=3
+    OTROS=4
 }
 export interface ICreateVoucherExport {
     Fecha_cbte?: string

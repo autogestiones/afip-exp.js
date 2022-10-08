@@ -1,4 +1,4 @@
-import { ICreateVoucherExport } from './../types';
+import { ICreateVoucherExport } from "./../types";
 declare const AfipWebService: any;
 export default class ElectronicExportBilling extends AfipWebService {
     constructor(afip: any);
@@ -14,7 +14,7 @@ export default class ElectronicExportBilling extends AfipWebService {
     getCountries(): Promise<any>;
     getIncoterms(): Promise<any>;
     getCUITsOfCountries(): Promise<any>;
-    getQuoteCurrencyByMoneyId(moneyId: any): Promise<any>;
+    getQuoteCurrency(moneyId: any): Promise<any>;
     getSalesPointsValids(): Promise<any>;
     getOptionsTypes(): Promise<any>;
     verifyPermissionExistenceCountryById(permissionId: any, countryId: any): Promise<any>;

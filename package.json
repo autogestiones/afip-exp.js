@@ -1,6 +1,6 @@
 {
   "name": "@autogestiones/afip-exp.js",
-  "version": "0.0.45",
+  "version": "0.0.47",
   "description": "Libreria para usar los Web Services Wsfexv1 de AFIP con JavaScript",
   "main": "dist/src/Afip.js",
   "types": "dist/src/Afip.d.ts",

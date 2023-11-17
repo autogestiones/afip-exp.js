@@ -49,6 +49,8 @@ module.exports = class ElectronicBilling extends AfipWebService {
             return results;
         }
         else {
+            console.log("NOTIFICACIÓN");
+            console.log(results);
             if (Array.isArray(results.FeDetResp.FECAEDetResponse)) {
                 results.FeDetResp.FECAEDetResponse = results.FeDetResp.FECAEDetResponse[0];
             }
@@ -136,6 +138,8 @@ module.exports = class ElectronicBilling extends AfipWebService {
     }
     async _checkErrors(operation, results) {
         const res = results[operation + 'Result'];
+        console.log("CHEQUEANDO ERRORES");
+        console.log(res);
         if (operation === 'FECAESolicitar' && res.FeDetResp) {
             if (Array.isArray(res.FeDetResp.FECAEDetResponse)) {
                 res.FeDetResp.FECAEDetResponse = res.FeDetResp.FECAEDetResponse[0];

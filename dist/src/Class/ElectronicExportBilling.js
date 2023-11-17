@@ -14,16 +14,21 @@ class ElectronicExportBilling extends AfipWebService {
         super(options);
     }
     async getLastVoucher(salesPoint, type) {
+        var _a;
         const req = {
-            Pto_venta: salesPoint,
-            Cbte_Tipo: type,
+            Pto_venta: +salesPoint,
+            Cbte_Tipo: +type,
         };
-        return (await this.executeRequest("FEXGetLast_CMP", req)).Cbte_nro;
+        console.log(req);
+        const response = (await this.executeRequest("FEXGetLast_CMP", {}, req));
+        console.log("lastVersion");
+        console.log(response);
+        return (_a = response === null || response === void 0 ? void 0 : response.FEXResult_LastCMP) === null || _a === void 0 ? void 0 : _a.Cbte_nro;
     }
     async createVoucher(data, returnResponse = false) {
         const Id = +(await this.getLastId()) + 1;
         const req = {
-            Cmp: data
+            Cmp: data,
         };
         req.Cmp.Id = Id;
         if (req.Cmp["Permisos"])
@@ -40,8 +45,7 @@ class ElectronicExportBilling extends AfipWebService {
         }
         else {
             if (Array.isArray(results.FEXResultAuth)) {
-                results.FEXResultAuth =
-                    results.FEXResultAuth[0];
+                results.FEXResultAuth = results.FEXResultAuth[0];
             }
             return {
                 CAE: results.FEXResultAuth.Cae,
@@ -50,10 +54,11 @@ class ElectronicExportBilling extends AfipWebService {
         }
     }
     async createNextVoucher(data) {
-        const lastVoucher = await this.getLastVoucher(data["PtoVta"], data["CbteTipo"]);
-        const voucherNumber = lastVoucher + 1;
-        data["CbteDesde"] = voucherNumber;
-        data["CbteHasta"] = voucherNumber;
+        const lastVoucher = await this.getLastVoucher(data["Punto_vta"], data["Cbte_Tipo"]);
+        const voucherNumber = (+lastVoucher || 0) + 1;
+        data["Cbte_nro"] = voucherNumber;
+        console.log("data2");
+        console.log(data);
         let res = await this.createVoucher(data);
         res["voucherNumber"] = voucherNumber;
         return res;
@@ -142,33 +147,24 @@ class ElectronicExportBilling extends AfipWebService {
             .toString()
             .replace(/(\d{4})(\d{2})(\d{2})/, (string, year, month, day) => `${year}-${month}-${day}`);
     }
-    async executeRequest(operation, params = {}) {
-        Object.assign(params, await this.getWSInitialRequest(operation));
+    async executeRequest(operation, params = {}, authData = {}) {
+        Object.assign(params, await this.getWSInitialRequest(operation, authData));
         const results = await super.executeRequest(operation, params);
         await this._checkErrors(operation, results);
         return results[operation + "Result"];
     }
-    async getWSInitialRequest(operation) {
+    async getWSInitialRequest(operation, authData) {
         if (operation === "FEDummy") {
             return {};
         }
         const { token, sign } = await this.afip.GetServiceTA("wsfex");
         return {
-            Auth: {
-                Token: token,
-                Sign: sign,
-                Cuit: this.afip.CUIT,
-            },
+            Auth: Object.assign({ Token: token, Sign: sign, Cuit: this.afip.CUIT }, authData),
         };
     }
     async _checkErrors(operation, results) {
         const res = results[operation + "Result"];
-        console.log(res);
         if (res.FEXErr) {
-            console.log("FEXErr");
-            console.log(res.FEXErr);
-            console.log("res");
-            console.log(res);
             const err = Array.isArray(res.FEXErr) ? res.FEXErr[0] : res.FEXErr;
             if (+err.ErrCode !== 0)
                 throw new Error(`(${err.ErrCode}) ${err.ErrMsg}`);

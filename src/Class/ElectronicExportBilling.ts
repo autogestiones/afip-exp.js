@@ -34,12 +34,18 @@ export default class ElectronicExportBilling extends AfipWebService {
    * @return int
    **/
   async getLastVoucher(salesPoint, type) {
+
+    
     const req = {
-      Pto_venta: salesPoint,
-      Cbte_Tipo: type,
+      Pto_venta: +salesPoint,
+      Cbte_Tipo: +type,
     };
 
-    return (await this.executeRequest("FEXGetLast_CMP", req)).Cbte_nro;
+    console.log(req)
+    const response = (await this.executeRequest("FEXGetLast_CMP", {}, req))
+    console.log("lastVersion")
+    console.log(response)
+    return response?.FEXResult_LastCMP?.Cbte_nro;
   }
 
   /**
@@ -63,19 +69,21 @@ export default class ElectronicExportBilling extends AfipWebService {
   async createVoucher(data: ICreateVoucherExport, returnResponse = false) {
     const Id = +(await this.getLastId()) + 1;
     const req = {
-      Cmp: data
+      Cmp: data,
     } as any;
-	
-	req.Cmp.Id = Id
-	
 
-    if (req.Cmp["Permisos"]) req.Cmp["Permisos"] = { Permiso: data["Permisos"] };
+    req.Cmp.Id = Id;
 
-    if (req.Cmp["Cmps_asoc"]) req.Cmp["Cmps_asoc"] = { Cmp_asoc: data["Cmps_asoc"] };
+    if (req.Cmp["Permisos"])
+      req.Cmp["Permisos"] = { Permiso: data["Permisos"] };
+
+    if (req.Cmp["Cmps_asoc"])
+      req.Cmp["Cmps_asoc"] = { Cmp_asoc: data["Cmps_asoc"] };
 
     if (req.Cmp["Items"]) req.Cmp["Items"] = { Item: data["Items"] };
 
-    if (req.Cmp["Opcionales"]) req.Cmp["Opcionales"] = { Opcional: data["Opcionales"] };
+    if (req.Cmp["Opcionales"])
+      req.Cmp["Opcionales"] = { Opcional: data["Opcionales"] };
 
     const results = await this.executeRequest("FEXAuthorize", req);
 
@@ -83,15 +91,12 @@ export default class ElectronicExportBilling extends AfipWebService {
       return results;
     } else {
       if (Array.isArray(results.FEXResultAuth)) {
-        results.FEXResultAuth =
-          results.FEXResultAuth[0];
+        results.FEXResultAuth = results.FEXResultAuth[0];
       }
 
       return {
         CAE: results.FEXResultAuth.Cae,
-        CAEFchVto: this.formatDate(
-          results.FEXResultAuth.Fch_venc_Cae
-        ),
+        CAEFchVto: this.formatDate(results.FEXResultAuth.Fch_venc_Cae),
       };
     }
   }
@@ -111,15 +116,16 @@ export default class ElectronicExportBilling extends AfipWebService {
    **/
   async createNextVoucher(data) {
     const lastVoucher = await this.getLastVoucher(
-      data["PtoVta"],
-      data["CbteTipo"]
+      data["Punto_vta"],
+      data["Cbte_Tipo"]
     );
 
-    const voucherNumber = lastVoucher + 1;
+    const voucherNumber = (+lastVoucher || 0) + 1;
 
-    data["CbteDesde"] = voucherNumber;
-    data["CbteHasta"] = voucherNumber;
+    data["Cbte_nro"] = voucherNumber;
 
+    console.log("data2")
+    console.log(data)
     let res = await this.createVoucher(data);
     res["voucherNumber"] = voucherNumber;
 
@@ -356,8 +362,8 @@ export default class ElectronicExportBilling extends AfipWebService {
    *
    * @return mixed Operation results
    **/
-  async executeRequest(operation, params = {}) {
-    Object.assign(params, await this.getWSInitialRequest(operation));
+  async executeRequest(operation, params = {}, authData={}) {
+    Object.assign(params, await this.getWSInitialRequest(operation, authData));
 
     const results = await super.executeRequest(operation, params);
 
@@ -373,7 +379,7 @@ export default class ElectronicExportBilling extends AfipWebService {
    *
    * @return array Request parameters
    **/
-  async getWSInitialRequest(operation) {
+  async getWSInitialRequest(operation, authData) {
     if (operation === "FEDummy") {
       return {};
     }
@@ -385,6 +391,7 @@ export default class ElectronicExportBilling extends AfipWebService {
         Token: token,
         Sign: sign,
         Cuit: this.afip.CUIT,
+        ...authData
       },
     };
   }
@@ -402,14 +409,14 @@ export default class ElectronicExportBilling extends AfipWebService {
   async _checkErrors(operation, results) {
     const res = results[operation + "Result"];
 
-	console.log(res)
+   /*  console.log(res); */
     if (res.FEXErr) {
-	console.log("FEXErr")
-	console.log(res.FEXErr)
-	
-	console.log("res")
-	console.log(res)
-	const err = Array.isArray(res.FEXErr) ? res.FEXErr[0] : res.FEXErr;
+      /* console.log("FEXErr");
+      console.log(res.FEXErr);
+
+      console.log("res");
+      console.log(res); */
+      const err = Array.isArray(res.FEXErr) ? res.FEXErr[0] : res.FEXErr;
       if (+err.ErrCode !== 0) throw new Error(`(${err.ErrCode}) ${err.ErrMsg}`);
     }
   }

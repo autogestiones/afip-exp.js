@@ -20,15 +20,11 @@ export default class ElectronicExportBilling extends AfipWebService {
     verifyPermissionExistenceCountryById(permissionId: any, countryId: any): Promise<any>;
     getServerStatus(): Promise<any>;
     formatDate(date: any): any;
-    executeRequest(operation: any, params?: {}): Promise<any>;
-    getWSInitialRequest(operation: any): Promise<{
+    executeRequest(operation: any, params?: {}, authData?: {}): Promise<any>;
+    getWSInitialRequest(operation: any, authData: any): Promise<{
         Auth?: undefined;
     } | {
-        Auth: {
-            Token: any;
-            Sign: any;
-            Cuit: any;
-        };
+        Auth: any;
     }>;
     _checkErrors(operation: any, results: any): Promise<void>;
 }
